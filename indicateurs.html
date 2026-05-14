@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Indicateurs — Suicide USA 2000–2018</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Indicateurs clés pour l'analyse du suicide aux États-Unis (2000-2018).">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="img/logo_ecole.png" alt="Polytech Lille">
+        <div>
+          <span class="logo-text">DataSuicide</span>
+          <span class="logo-sub">Polytech Lille</span>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Réduire la barre">
+        <i class="bi bi-layout-sidebar-reverse"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Navigation</div>
+      <ul>
+        <li>
+          <a href="index.html" title="Tableau de bord">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Tableau de bord</span>
+          </a>
+        </li>
+        <li class="active">
+          <a href="indicateurs.html" title="Indicateurs">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <span>Indicateurs</span>
+          </a>
+        </li>
+        <li>
+          <a href="analyse.html" title="Analyse">
+            <i class="bi bi-file-text-fill"></i>
+            <span>Analyse</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-section-label" style="margin-top:8px;">Données</div>
+      <ul>
+        <li>
+          <a href="https://catalog.data.gov/dataset/death-rates-for-suicide-by-sex-race-hispanic-origin-and-age-united-states-020c1" target="_blank" title="Source CDC">
+            <i class="bi bi-box-arrow-up-right"></i>
+            <span>Source CDC</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="team-card">
+        <div class="team-avatar">HN</div>
+        <div class="team-names">
+          <span>H. Mahmoudi &amp; A. Nakrou</span>
+          <small>Polytech Lille · 3A</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <header class="top-header">
+      <div class="header-left">
+        <h1>Indicateurs clés de suivi</h1>
+        <p class="header-sub">Description et méthodologie des indicateurs utilisés</p>
+      </div>
+      <div class="header-right">
+        <span class="badge-source">
+          <i class="bi bi-shield-check"></i>
+          Source&nbsp;: CDC / data.gov
+        </span>
+      </div>
+    </header>
+
+    <div class="page-body">
+
+      <div class="page-intro">
+        <p>
+          Ces indicateurs permettent de suivre et d'analyser l'évolution des taux de suicide aux États-Unis
+          entre 2000 et 2018. Ils sont représentés de façon interactive sur le tableau de bord principal.
+        </p>
+      </div>
+
+      <!-- Indicateurs Grid -->
+      <div class="indicator-grid">
+
+        <!-- Taux global -->
+        <div class="indicator-card">
+          <div class="indicator-icon-wrap ic-blue">
+            <i class="bi bi-graph-up"></i>
+          </div>
+          <h2>Taux de suicide global</h2>
+          <p>
+            Cet indicateur présente le <strong>taux de suicide pour 100 000 habitants</strong> aux États-Unis
+            pour chaque année de la période étudiée. Il permet d'observer l'évolution générale du phénomène
+            et d'identifier les années critiques.
+          </p>
+          <div class="indicator-note">
+            <strong>Visualisation :</strong> Courbe de tendance avec zone remplie (2000–2018), affichant
+            l'évolution continue du taux global année par année.
+          </div>
+        </div>
+
+        <!-- Variation annuelle -->
+        <div class="indicator-card">
+          <div class="indicator-icon-wrap ic-green">
+            <i class="bi bi-bar-chart-fill"></i>
+          </div>
+          <h2>Variation annuelle</h2>
+          <p>
+            Cet indicateur mesure le <strong>pourcentage de variation du taux de suicide</strong> d'une année
+            à l'autre. Il permet d'identifier les périodes d'accélération ou de ralentissement et les points
+            d'inflexion dans la tendance générale.
+          </p>
+          <p style="font-style:italic;font-size:12px;color:var(--text-muted);">
+            Formule : [(Taux<sub>n</sub> − Taux<sub>n−1</sub>) / Taux<sub>n−1</sub>] × 100
+          </p>
+          <div class="indicator-note">
+            <strong>Visualisation :</strong> Graphique en barres avec coloration dynamique — vert pour hausse,
+            rouge pour baisse — permettant une lecture immédiate des tendances.
+          </div>
+        </div>
+
+        <!-- Répartition par sexe -->
+        <div class="indicator-card">
+          <div class="indicator-icon-wrap ic-orange">
+            <i class="bi bi-gender-ambiguous"></i>
+          </div>
+          <h2>Répartition par sexe</h2>
+          <p>
+            Cet indicateur compare les <strong>taux de suicide entre hommes et femmes</strong>. Il révèle
+            des disparités importantes qui orientent les politiques de prévention ciblées et met en évidence
+            des facteurs de risque spécifiques à chaque sexe.
+          </p>
+          <div class="indicator-note">
+            <strong>Visualisation :</strong> Graphique en anneau (donut) pour la vue globale. En sélectionnant
+            un genre dans le menu déroulant, la vue bascule vers une courbe temporelle.
+          </div>
+        </div>
+
+        <!-- Répartition par âge -->
+        <div class="indicator-card">
+          <div class="indicator-icon-wrap ic-purple">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <h2>Répartition par tranche d'âge</h2>
+          <p>
+            Cet indicateur analyse les <strong>taux de suicide par tranche d'âge</strong>, permettant
+            d'identifier les populations les plus vulnérables. Il offre la possibilité d'explorer l'évolution
+            pour une tranche d'âge spécifique au fil du temps.
+          </p>
+          <div class="indicator-note">
+            <strong>Visualisation :</strong> Graphique en anneau pour la vue globale. La sélection d'une
+            tranche d'âge affiche la courbe temporelle correspondante.
+          </div>
+        </div>
+
+        <!-- Répartition par origine (full width) -->
+        <div class="indicator-card indicator-full">
+          <div class="indicator-icon-wrap ic-cyan">
+            <i class="bi bi-globe-europe-africa"></i>
+          </div>
+          <h2>Répartition par origine ethnique</h2>
+          <p>
+            Cet indicateur examine les <strong>différences de taux de suicide entre les groupes ethniques</strong>
+            aux États-Unis. Il met en lumière des disparités liées à des facteurs socio-économiques, culturels
+            ou d'accès aux soins de santé mentale.
+          </p>
+          <div class="indicator-note">
+            <strong>Visualisation :</strong> Graphique en barres horizontales (vue comparative globale) trié
+            par valeur décroissante. La sélection d'une origine affiche l'évolution temporelle correspondante.
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Note méthodologique -->
+      <div class="note-box">
+        <h4><i class="bi bi-info-circle-fill"></i> Note méthodologique</h4>
+        <p>
+          Les taux sont calculés pour <strong>100 000 habitants</strong>. Les données sont issues des
+          <em>Centers for Disease Control and Prevention</em> (CDC) et couvrent la période 2000–2018.
+          La moyenne des taux est calculée sur l'ensemble de la période pour les graphiques de répartition.
+          Les catégories "Sex and race" combinent le sexe et l'origine dans la source de données d'origine ;
+          les valeurs affichées représentent la moyenne entre les sous-groupes masculins et féminins.
+        </p>
+      </div>
+
+    </div><!-- /page-body -->
+
+    <footer class="main-footer">
+      <p>Dashboard · Taux de suicide aux États-Unis (2000–2018) · Source : Centers for Disease Control and Prevention (CDC)</p>
+      <p>Polytech Lille · Hajar Mahmoudi &amp; Amine Nakrou</p>
+    </footer>
+
+  </main>
+</div><!-- /app-layout -->
+
+<script>
+  document.getElementById('sidebarToggle').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+  });
+</script>
+</body>
+</html>

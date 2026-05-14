@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard — Suicide USA 2000–2018</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Tableau de bord interactif sur les taux de suicide aux États-Unis (2000-2018).">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+<div class="app-layout">
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo">
+        <img src="img/logo_ecole.png" alt="Polytech Lille">
+        <div>
+          <span class="logo-text">DataSuicide</span>
+          <span class="logo-sub">Polytech Lille</span>
+        </div>
+      </div>
+      <button class="sidebar-toggle" id="sidebarToggle" title="Réduire la barre">
+        <i class="bi bi-layout-sidebar-reverse"></i>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Navigation</div>
+      <ul>
+        <li class="active">
+          <a href="index.html" title="Tableau de bord">
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Tableau de bord</span>
+          </a>
+        </li>
+        <li>
+          <a href="indicateurs.html" title="Indicateurs">
+            <i class="bi bi-bar-chart-line-fill"></i>
+            <span>Indicateurs</span>
+          </a>
+        </li>
+        <li>
+          <a href="analyse.html" title="Analyse">
+            <i class="bi bi-file-text-fill"></i>
+            <span>Analyse</span>
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-section-label" style="margin-top:8px;">Données</div>
+      <ul>
+        <li>
+          <a href="https://catalog.data.gov/dataset/death-rates-for-suicide-by-sex-race-hispanic-origin-and-age-united-states-020c1" target="_blank" title="Source CDC">
+            <i class="bi bi-box-arrow-up-right"></i>
+            <span>Source CDC</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="team-card">
+        <div class="team-avatar">HN</div>
+        <div class="team-names">
+          <span>H. Mahmoudi &amp; A. Nakrou</span>
+          <small>Polytech Lille · 3A</small>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <main class="main-content">
+
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <h1>Tableau de bord</h1>
+        <p class="header-sub">Taux de suicide aux États-Unis — 2000 à 2018</p>
+      </div>
+      <div class="header-right">
+        <span class="badge-source">
+          <i class="bi bi-shield-check"></i>
+          Source&nbsp;: CDC / data.gov
+        </span>
+      </div>
+    </header>
+
+    <!-- Page Body -->
+    <div class="page-body">
+
+      <!-- KPI Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card kpi-blue">
+          <div class="kpi-icon"><i class="bi bi-graph-up"></i></div>
+          <div>
+            <div class="kpi-value" id="kpi-avg">—</div>
+            <div class="kpi-label">Taux moyen global</div>
+            <div class="kpi-sub">pour 100 000 hab.</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-red">
+          <div class="kpi-icon"><i class="bi bi-arrow-up-circle-fill"></i></div>
+          <div>
+            <div class="kpi-value" id="kpi-peak">—</div>
+            <div class="kpi-label">Taux record</div>
+            <div class="kpi-sub">pic historique sur la période</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-orange">
+          <div class="kpi-icon"><i class="bi bi-gender-ambiguous"></i></div>
+          <div>
+            <div class="kpi-value" id="kpi-ratio">—</div>
+            <div class="kpi-label">Ratio Hommes / Femmes</div>
+            <div class="kpi-sub">disproportion de genre</div>
+          </div>
+        </div>
+        <div class="kpi-card kpi-green">
+          <div class="kpi-icon"><i class="bi bi-percent"></i></div>
+          <div>
+            <div class="kpi-value" id="kpi-increase">—</div>
+            <div class="kpi-label">Augmentation totale</div>
+            <div class="kpi-sub">sur 18 ans (2000 → 2018)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Section -->
+      <div class="card">
+        <div class="card-header">
+          <h2><i class="bi bi-cloud-upload-fill"></i> Charger vos données</h2>
+        </div>
+        <div class="card-body">
+          <div class="upload-grid">
+            <div class="drop-zone" id="dropZone">
+              <i class="bi bi-file-earmark-arrow-up drop-icon"></i>
+              <p class="drop-text">Glissez-déposez votre fichier CSV ici</p>
+              <p class="drop-sub">ou cliquez pour parcourir</p>
+              <label class="btn btn-primary" for="csv" style="cursor:pointer;">
+                <i class="bi bi-folder2-open"></i> Parcourir…
+              </label>
+              <input id="csv" type="file" accept=".csv" style="display:none;">
+              <div class="file-info" id="fileInfo">Aucun fichier sélectionné</div>
+            </div>
+
+            <div class="data-source-info">
+              <h3>Source des données</h3>
+              <p>
+                Taux de mortalité par suicide par sexe, race, origine hispanique et âge aux États-Unis (2000–2018).
+                Données issues des <strong>Centers for Disease Control and Prevention (CDC)</strong>.
+              </p>
+              <div class="format-hint">
+                Colonnes attendues : STUB_NAME · STUB_LABEL · YEAR · AGE · ESTIMATE
+              </div>
+              <div class="action-row">
+                <button id="load_btn" class="btn btn-success" disabled>
+                  <i class="bi bi-play-circle-fill"></i> Lancer l'analyse
+                </button>
+                <a href="https://catalog.data.gov/dataset/death-rates-for-suicide-by-sex-race-hispanic-origin-and-age-united-states-020c1"
+                   target="_blank" class="btn btn-outline">
+                  <i class="bi bi-download"></i> Dataset original
+                </a>
+              </div>
+              <div id="uploadStatus" class="upload-status"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Charts -->
+      <div class="charts-section">
+
+        <!-- Row 1 : Trend + Variation -->
+        <div class="charts-row">
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">
+                <i class="bi bi-graph-up-arrow"></i>
+                <h3>Évolution du taux de suicide global</h3>
+              </div>
+            </div>
+            <div id="myplot_taux" class="plot-div-tall"></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">
+                <i class="bi bi-bar-chart-fill"></i>
+                <h3>Variation annuelle du taux (%)</h3>
+              </div>
+            </div>
+            <div id="myplot_évolution" class="plot-div-tall"></div>
+          </div>
+        </div>
+
+        <!-- Row 2 : Demographic charts -->
+        <div class="charts-row charts-row-3">
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">
+                <i class="bi bi-gender-ambiguous"></i>
+                <h3>Répartition par sexe</h3>
+              </div>
+              <select id="select_sexe" class="chart-select">
+                <option value="">Vue globale</option>
+              </select>
+            </div>
+            <div id="myplot_sexe" class="plot-div"></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">
+                <i class="bi bi-people-fill"></i>
+                <h3>Répartition par âge</h3>
+              </div>
+              <select id="select_age" class="chart-select">
+                <option value="">Vue globale</option>
+              </select>
+            </div>
+            <div id="myplot_age" class="plot-div"></div>
+          </div>
+
+          <div class="chart-card">
+            <div class="chart-header">
+              <div class="chart-title">
+                <i class="bi bi-globe-europe-africa"></i>
+                <h3>Répartition par origine</h3>
+              </div>
+              <select id="select_origin" class="chart-select">
+                <option value="">Vue globale</option>
+              </select>
+            </div>
+            <div id="myplot_origin" class="plot-div"></div>
+          </div>
+
+        </div>
+      </div>
+
+    </div><!-- /page-body -->
+
+    <footer class="main-footer">
+      <p>Dashboard · Taux de suicide aux États-Unis (2000–2018) · Source : Centers for Disease Control and Prevention (CDC)</p>
+      <p>Polytech Lille · Hajar Mahmoudi &amp; Amine Nakrou</p>
+    </footer>
+
+  </main>
+</div><!-- /app-layout -->
+
+<script src="js/plotly-2.18.0.min.js"></script>
+<script src="js/suicide.js"></script>
+<script src="js/readfile.js"></script>
+<script>
+  // Sidebar toggle
+  document.getElementById('sidebarToggle').addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('collapsed');
+  });
+</script>
+</body>
+</html>
